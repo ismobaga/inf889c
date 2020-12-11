@@ -21,10 +21,6 @@ def topologie():
 	h4 = net.addHost('h4', ip='10.0.0.4', mac="00:00:00:00:00:04")
 	h5 = net.addHost('h5', ip='10.0.0.5', mac="00:00:00:00:00:05")
 	h6 = net.addHost('h6', ip='10.0.0.6', mac="00:00:00:00:00:06")
-	h7 = net.addHost('h7', ip='10.0.0.7', mac="00:00:00:00:00:07")
-	h8 = net.addHost('h8', ip='10.0.0.8', mac="00:00:00:00:00:08")
-	h9 = net.addHost('h9', ip='10.0.0.9', mac="00:00:00:00:00:09")
-	h10 = net.addHost('h10', ip='10.0.0.10', mac="00:00:00:00:00:10")
 
 	s1=net.addSwitch('s1')
 	s2=net.addSwitch('s2')
@@ -33,27 +29,38 @@ def topologie():
 	s5=net.addSwitch('s5')
 	s6=net.addSwitch('s6')
 	s7=net.addSwitch('s7')
+	s8=net.addSwitch('s8')
+	s9=net.addSwitch('s9')
+	s10=net.addSwitch('s10')
+	s11=net.addSwitch('s11')
+	s12=net.addSwitch('s12')
 
-	net.addLink(h1, s2)
+	net.addLink(h1, s1)
 	net.addLink(h2, s2)
 	net.addLink(h3, s3)
-	net.addLink(h4, s3)
-	net.addLink(h5, s4)
-	net.addLink(h6, s4)
-	net.addLink(h7, s6)
-	net.addLink(h8, s6)
-	net.addLink(h9, s7)
-	net.addLink(h10, s7)
-	net.addLink(s2, s3)
-	net.addLink(s2, s1)
-	net.addLink(s3, s1)
-	net.addLink(s1, s4)
-	net.addLink(s4, s5)
-	net.addLink(s1, s5)
-	net.addLink(s6, s7)
-	net.addLink(s6, s5)
-	net.addLink(s7, s5)
+	net.addLink(h4, s10)
+	net.addLink(h5, s11)
+	net.addLink(h6, s12)
 
+	net.addLink(s1, s4, bw=10)
+	net.addLink(s2, s4, bw=10)
+	net.addLink(s3, s4, bw=10)
+
+	net.addLink(s4, s5, bw=3)
+	net.addLink(s4, s6, bw=4)
+	net.addLink(s4, s7)
+
+	net.addLink(s5, s6, bw=3)
+
+	net.addLink(s6, s9)
+	net.addLink(s6, s10, bw=10)
+	net.addLink(s6, s11, bw=10)
+	net.addLink(s6, s12, bw=10)
+
+	net.addLink(s7, s8, bw=2)
+	net.addLink(s8, s9, bw=2)
+
+	
 	net.start()
 
 	net.pingAllFull()
@@ -61,6 +68,6 @@ def topologie():
 	CLI(net)
 	net.stop()
 
-if __name__ = '__main__':
+if __name__ == '__main__':
 	setLogLevel('info')
 	topologie()

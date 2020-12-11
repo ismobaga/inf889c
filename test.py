@@ -193,7 +193,7 @@ class ModuleProjet889C(EventMixin):
             switch.dpid = event.dpid
             self.switches[event.dpid] = switch
             switch.suivre_switch(event.connection)
-     def _handle_PortStatsReceived(self, event):
+    def _handle_PortStatsReceived(self, event):
         if event.connection.dpid in self.switches:
             self.switches[event.connection.dpid].traiter_stats_ports(event.stats, time.time())
 
